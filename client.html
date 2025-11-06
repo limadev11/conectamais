@@ -9,7 +9,7 @@
   <meta name="keywords" content="Conecta+, dashboard, entregas, produtos, FlexStart" />
 
   <!-- Favicons (use os seus) -->
-  <link href="assets/img/favicon.png" rel="icon" />
+  <link href="assets/img/logo.jpg" rel="icon" />
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
 
   <!-- Fonts -->
@@ -29,19 +29,70 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <style>
-    body { font-family: "Poppins", sans-serif; background: #f6f8fb; }
-    .sidebar { width: 250px; min-height: 100vh; background: linear-gradient(180deg,#0d6efd,#6f42c1); color: #fff; position: fixed; }
-    .sidebar a { color: #fff; }
-    .content { margin-left: 260px; padding: 30px; }
-    .card-rounded { border-radius: 12px; box-shadow: 0 6px 18px rgba(33,37,41,.06); }
-    .preview-img { width: 100%; max-height: 220px; object-fit: cover; border-radius: 8px; display:none; margin-top:10px; }
-    .badge-status { font-size: .8rem; padding:.4rem .6rem; border-radius: 8px; }
-    .table-responsive { max-height: 420px; overflow:auto; }
-    .small-note { font-size: .85rem; color:#6c757d; }
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #f6f8fb;
+    }
+
+    .sidebar {
+      width: 250px;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #0d6efd, #6f42c1);
+      color: #fff;
+      position: fixed;
+    }
+
+    .sidebar a {
+      color: #fff;
+    }
+
+    .content {
+      margin-left: 260px;
+      padding: 30px;
+    }
+
+    .card-rounded {
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(33, 37, 41, .06);
+    }
+
+    .preview-img {
+      width: 100%;
+      max-height: 220px;
+      object-fit: cover;
+      border-radius: 8px;
+      display: none;
+      margin-top: 10px;
+    }
+
+    .badge-status {
+      font-size: .8rem;
+      padding: .4rem .6rem;
+      border-radius: 8px;
+    }
+
+    .table-responsive {
+      max-height: 420px;
+      overflow: auto;
+    }
+
+    .small-note {
+      font-size: .85rem;
+      color: #6c757d;
+    }
+
     /* responsive adjustments */
     @media (max-width: 991px) {
-      .sidebar { position: relative; width: 100%; min-height: auto; }
-      .content { margin-left: 0; padding: 16px; }
+      .sidebar {
+        position: relative;
+        width: 100%;
+        min-height: auto;
+      }
+
+      .content {
+        margin-left: 0;
+        padding: 16px;
+      }
     }
   </style>
 </head>
@@ -51,7 +102,7 @@
   <!-- SIDEBAR -->
   <aside class="sidebar d-flex flex-column p-4">
     <div class="mb-4 d-flex align-items-center">
-      <img src="assets/img/logo.png" alt="logo" style="height:38px;margin-right:10px">
+      <img src="assets/img/logo.jpg" alt="logo" style="height:38px;margin-right:10px">
       <h4 class="m-0">Conecta+</h4>
     </div>
 
@@ -123,221 +174,287 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- PRODUTOS -->
-    <section id="produtos" class="mb-5">
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4>Meus Produtos</h4>
-        <div class="small-note">Adicione produtos, marque queima de estoque, seleção de plataformas e gere descrição com IA.</div>
-      </div>
-
-      <div class="row g-4">
-        <!-- Formulário -->
-        <div class="col-lg-5">
+        <div class="col-lg-3">
           <div class="card card-rounded p-3">
-            <h5>Cadastro / Editar Produto</h5>
-            <form id="formProduto">
-              <div class="mb-3">
-                <label class="form-label">Imagem do produto</label>
-                <input class="form-control" type="file" id="imgProduto" accept="image/*">
-                <img id="previewImg" class="preview-img" alt="Prévia do produto">
-              </div>
-
-              <div class="mb-2">
-                <label class="form-label">Nome</label>
-                <input id="nomeProduto" class="form-control" placeholder="Nome do produto">
-              </div>
-
-              <div class="mb-2">
-                <label class="form-label">Categoria</label>
-                <select id="categoriaProduto" class="form-select">
-                  <option value="">Selecione</option>
-                  <option>Alimentos</option>
-                  <option>Cosméticos</option>
-                  <option>Higiene</option>
-                  <option>Medicamentos Naturais</option>
-                  <option>Outros</option>
-                </select>
-              </div>
-
-              <div class="row g-2">
-                <div class="col-6">
-                  <label class="form-label">Preço (R$)</label>
-                  <input id="precoProduto" class="form-control" type="number" step="0.01" min="0">
-                </div>
-                <div class="col-6">
-                  <label class="form-label">Qtd. Estoque</label>
-                  <input id="qtdProduto" class="form-control" type="number" min="0" value="1">
-                </div>
-              </div>
-
-              <div class="mb-2 mt-2">
-                <label class="form-label">Plataformas de divulgação</label>
-                <div class="d-flex flex-wrap gap-2">
-                  <label class="form-check-label"><input class="form-check-input me-1" type="checkbox" value="TikTok">TikTok</label>
-                  <label class="form-check-label"><input class="form-check-input me-1" type="checkbox" value="Instagram">Instagram</label>
-                  <label class="form-check-label"><input class="form-check-input me-1" type="checkbox" value="Facebook">Facebook</label>
-                  <label class="form-check-label"><input class="form-check-input me-1" type="checkbox" value="Google">Google</label>
-                  <label class="form-check-label"><input class="form-check-input me-1" type="checkbox" value="YouTube">YouTube</label>
-                </div>
-              </div>
-
-              <div class="mb-2 checkboxes">
-                <label class="form-check-label d-block"><input class="form-check-input me-1" type="checkbox" id="flagQueima"> Produto em Queima de Estoque (próximo da validade)</label>
-                <label class="form-check-label d-block"><input class="form-check-input me-1" type="checkbox" id="flagLancamento"> Lançamento</label>
-                <label class="form-check-label d-block"><input class="form-check-input me-1" type="checkbox" id="flagDestaque"> Produto Destaque</label>
-              </div>
-
-              <div class="mb-2">
-                <label class="form-label">Descrição</label>
-                <textarea id="descricaoProduto" class="form-control" rows="3"></textarea>
-              </div>
-
-              <div class="mb-2">
-                <label class="form-label">Observações</label>
-                <textarea id="obsProduto" class="form-control" rows="2" placeholder="Observações livres"></textarea>
-              </div>
-
-              <div class="d-flex gap-2">
-                <button type="button" id="btnGerar" class="btn btn-primary">Gerar Descrição (IA)</button>
-                <button type="submit" class="btn btn-success">Salvar Produto</button>
-                <button type="button" id="btnLimpar" class="btn btn-outline-secondary">Limpar</button>
-              </div>
-
-              <div id="genLoader" class="mt-2 small-note" style="display:none">Gerando descrição inteligente...</div>
-            </form>
-          </div>
-        </div>
-
-        <!-- Lista de produtos e ações -->
-        <div class="col-lg-7">
-          <div class="card card-rounded p-3">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <h5 class="mb-0">Lista de Produtos</h5>
+            <div class="d-flex justify-content-between align-items-center">
               <div>
-                <button id="exportProdutos" class="btn btn-sm btn-outline-primary me-2">Exportar CSV</button>
-                <button id="duplicarProduto" class="btn btn-sm btn-outline-secondary">Duplicar selecionado</button>
+                <small class="small-note">Valor da Fatura Atual</small>
+                <h4 id="valorFatura" class="text-success fw-bold mt-1">R$ 0,00</h4>
+                <small class="text-muted">Atualizado conforme faturamento</small>
+              </div>
+              <i class="bi bi-cash-coin fs-2 text-success"></i>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- PRODUTOS -->
+        <section id="produtos" class="mb-5">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4>Meus Produtos</h4>
+            <div class="small-note">Adicione produtos, marque queima de estoque, seleção de plataformas e gere descrição
+              com
+              IA.</div>
+          </div>
+
+          <div class="row g-4">
+            <!-- Formulário -->
+            <div class="col-lg-5">
+              <div class="card card-rounded p-3">
+                <h5>Cadastro / Editar Produto</h5>
+                <form id="formProduto">
+                  <div class="mb-3">
+                    <label class="form-label">Imagem do produto</label>
+                    <input class="form-control" type="file" id="imgProduto" accept="image/*">
+                    <img id="previewImg" class="preview-img" alt="Prévia do produto">
+                  </div>
+
+                  <div class="mb-2">
+                    <label class="form-label">Nome</label>
+                    <input id="nomeProduto" class="form-control" placeholder="Nome do produto">
+                  </div>
+
+                  <div class="mb-2">
+                    <label class="form-label">Categoria</label>
+                    <select id="categoriaProduto" class="form-select">
+                      <option value="">Selecione</option>
+                      <option>Alimentos</option>
+                      <option>Cosméticos</option>
+                      <option>Higiene</option>
+                      <option>Medicamentos Naturais</option>
+                      <option>Outros</option>
+                    </select>
+                  </div>
+
+                  <div class="row g-2">
+                    <div class="col-6">
+                      <label class="form-label">Preço (R$)</label>
+                      <input id="precoProduto" class="form-control" type="number" step="0.01" min="0">
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label">Qtd. Estoque</label>
+                      <input id="qtdProduto" class="form-control" type="number" min="0" value="1">
+                    </div>
+                  </div>
+
+                  <div class="mb-2 mt-2">
+                    <label class="form-label">Plataformas de divulgação</label>
+                    <div class="d-flex flex-wrap gap-2">
+                      <label class="form-check-label"><input class="form-check-input me-1" type="checkbox"
+                          value="TikTok">TikTok</label>
+                      <label class="form-check-label"><input class="form-check-input me-1" type="checkbox"
+                          value="Instagram">Instagram</label>
+                      <label class="form-check-label"><input class="form-check-input me-1" type="checkbox"
+                          value="Facebook">Facebook</label>
+                      <label class="form-check-label"><input class="form-check-input me-1" type="checkbox"
+                          value="Google">Google</label>
+                      <label class="form-check-label"><input class="form-check-input me-1" type="checkbox"
+                          value="YouTube">YouTube</label>
+                    </div>
+                  </div>
+
+                  <div class="mb-2 checkboxes">
+                    <label class="form-check-label d-block"><input class="form-check-input me-1" type="checkbox"
+                        id="flagQueima"> Produto em Queima de Estoque (próximo da validade)</label>
+                    <label class="form-check-label d-block"><input class="form-check-input me-1" type="checkbox"
+                        id="flagLancamento"> Lançamento</label>
+                    <label class="form-check-label d-block"><input class="form-check-input me-1" type="checkbox"
+                        id="flagDestaque"> Produto Destaque</label>
+                  </div>
+
+                  <div class="mb-2">
+                    <label class="form-label">Descrição</label>
+                    <textarea id="descricaoProduto" class="form-control" rows="3"></textarea>
+                  </div>
+
+                  <div class="mb-2">
+                    <label class="form-label">Observações</label>
+                    <textarea id="obsProduto" class="form-control" rows="2" placeholder="Observações livres"></textarea>
+                  </div>
+
+                  <div class="d-flex gap-2">
+                    <button type="button" id="btnGerar" class="btn btn-primary">Gerar Descrição (IA)</button>
+                    <button type="submit" class="btn btn-success">Salvar Produto</button>
+                    <button type="button" id="btnLimpar" class="btn btn-outline-secondary">Limpar</button>
+                  </div>
+
+                  <div id="genLoader" class="mt-2 small-note" style="display:none">Gerando descrição inteligente...
+                  </div>
+                </form>
               </div>
             </div>
 
-            <div class="table-responsive">
-              <table class="table table-hover align-middle">
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>Nome</th>
-                    <th>Categoria</th>
-                    <th>Preço</th>
-                    <th>Qtd.</th>
-                    <th>Tags</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody id="tabelaProdutos">
-                  <!-- preenchido via JS -->
-                </tbody>
-              </table>
+            <!-- Lista de produtos e ações -->
+            <div class="col-lg-7">
+              <div class="card card-rounded p-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h5 class="mb-0">Lista de Produtos</h5>
+                  <div>
+                    <button id="exportProdutos" class="btn btn-sm btn-outline-primary me-2">Exportar CSV</button>
+                    <button id="duplicarProduto" class="btn btn-sm btn-outline-secondary">Duplicar selecionado</button>
+                  </div>
+                </div>
+
+                <div class="table-responsive">
+                  <table class="table table-hover align-middle">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Nome</th>
+                        <th>Categoria</th>
+                        <th>Preço</th>
+                        <th>Qtd.</th>
+                        <th>Tags</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody id="tabelaProdutos">
+                      <!-- preenchido via JS -->
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="mt-3 small-note">Dica: marque "Queima de estoque" para dar urgência nas descrições geradas
+                  pela
+                  IA.</div>
+              </div>
             </div>
-
-            <div class="mt-3 small-note">Dica: marque "Queima de estoque" para dar urgência nas descrições geradas pela IA.</div>
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <!-- ENTREGAS -->
-    <section id="entregas" class="mb-5">
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4>Entregas</h4>
-        <div class="small-note">Visualize métodos, status, rastreio e indicadores logísticos.</div>
-      </div>
+        <!-- FATURAMENTO -->
+        <section id="faturamento" class="mb-5">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4>Valor Final e Faturamento</h4>
+            <div class="small-note">Defina o valor total a ser pago e visualize o alcance estimado.</div>
+          </div>
 
-      <div class="row g-3">
-        <div class="col-lg-8">
-          <div class="card card-rounded p-3">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <strong>Histórico de Entregas</strong>
-              <div>
-                <select id="filtroMetodo" class="form-select form-select-sm">
-                  <option value="">Filtrar por método</option>
-                  <option value="Motoboy">Motoboy</option>
-                  <option value="Transportadora">Transportadora</option>
-                  <option value="Retirada">Retirada local</option>
-                  <option value="Correios">Envio (Correios)</option>
-                </select>
+          <div class="card card-rounded p-4">
+            <div class="row g-4 align-items-center">
+
+              <!-- Valor total -->
+              <div class="col-lg-4">
+                <div class="valor-box text-center p-3 border rounded">
+                  <h6 class="mb-1">Valor Total dos Produtos</h6>
+                  <h3 id="valorTotal" class="text-success fw-bold">R$ 0,00</h3>
+                  <small class="text-muted">Soma automática dos produtos adicionados</small>
+                </div>
+              </div>
+
+              <!-- Slider e alcance -->
+              <div class="col-lg-5">
+                <label class="form-label fw-semibold mb-1">Defina o valor a investir / pagar</label>
+                <input type="range" id="valorSlider" class="form-range" min="0" max="1000" step="10" value="0">
+                <div class="d-flex justify-content-between small">
+                  <span>R$ <span id="valorSelecionado">0</span></span>
+                  <span>💡 Alcance estimado: <strong id="alcanceEstimado">0</strong> pessoas</span>
+                </div>
+              </div>
+
+              <!-- Faturar -->
+              <div class="col-lg-3 text-center">
+                <button id="btnFaturar" class="btn btn-primary w-100 py-2">Gerar Faturamento</button>
+                <div id="msgFaturamento" class="mt-2 small-note text-success" style="display:none">
+                  Faturamento gerado com sucesso 💰
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ENTREGAS -->
+        <section id="entregas" class="mb-5">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4>Entregas</h4>
+            <div class="small-note">Visualize métodos, status, rastreio e indicadores logísticos.</div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-lg-8">
+              <div class="card card-rounded p-3">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <strong>Histórico de Entregas</strong>
+                  <div>
+                    <select id="filtroMetodo" class="form-select form-select-sm">
+                      <option value="">Filtrar por método</option>
+                      <option value="Motoboy">Motoboy</option>
+                      <option value="Transportadora">Transportadora</option>
+                      <option value="Retirada">Retirada local</option>
+                      <option value="Correios">Envio (Correios)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="table-responsive">
+                  <table class="table table-striped align-middle">
+                    <thead>
+                      <tr>
+                        <th>Pedido</th>
+                        <th>Cliente</th>
+                        <th>Produto</th>
+                        <th>Método</th>
+                        <th>Data compra</th>
+                        <th>Estimativa</th>
+                        <th>Status</th>
+                        <th>Rastreio</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tabelaEntregas">
+                      <!-- preenchido via JS -->
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
 
-            <div class="table-responsive">
-              <table class="table table-striped align-middle">
-                <thead>
-                  <tr>
-                    <th>Pedido</th>
-                    <th>Cliente</th>
-                    <th>Produto</th>
-                    <th>Método</th>
-                    <th>Data compra</th>
-                    <th>Estimativa</th>
-                    <th>Status</th>
-                    <th>Rastreio</th>
-                  </tr>
-                </thead>
-                <tbody id="tabelaEntregas">
+            <!-- Gráficos -->
+            <div class="col-lg-4">
+              <div class="card card-rounded p-3 mb-3">
+                <h6 class="mb-2">Distribuição por método</h6>
+                <canvas id="pieMetodo" height="220"></canvas>
+              </div>
+
+              <div class="card card-rounded p-3">
+                <h6 class="mb-2">Tempo médio de entrega (dias)</h6>
+                <canvas id="lineTempo" height="220"></canvas>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- RELATÓRIOS -->
+        <section id="relatorios" class="mb-5">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4>Relatórios & Insights</h4>
+            <div class="small-note">Relatórios gerados automaticamente (simulados).</div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-lg-6">
+              <div class="card card-rounded p-3">
+                <h6 class="mb-3">Produtos mais vendidos (simulado)</h6>
+                <ol id="topProdutos" class="mb-0">
                   <!-- preenchido via JS -->
-                </tbody>
-              </table>
+                </ol>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="card card-rounded p-3">
+                <h6 class="mb-3">Sugestões da IA</h6>
+                <div id="sugestoesIA" class="small-note">
+                  <!-- preenchido via JS -->
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
 
-        <!-- Gráficos -->
-        <div class="col-lg-4">
-          <div class="card card-rounded p-3 mb-3">
-            <h6 class="mb-2">Distribuição por método</h6>
-            <canvas id="pieMetodo" height="220"></canvas>
-          </div>
-
-          <div class="card card-rounded p-3">
-            <h6 class="mb-2">Tempo médio de entrega (dias)</h6>
-            <canvas id="lineTempo" height="220"></canvas>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- RELATÓRIOS -->
-    <section id="relatorios" class="mb-5">
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4>Relatórios & Insights</h4>
-        <div class="small-note">Relatórios gerados automaticamente (simulados).</div>
-      </div>
-
-      <div class="row g-3">
-        <div class="col-lg-6">
-          <div class="card card-rounded p-3">
-            <h6 class="mb-3">Produtos mais vendidos (simulado)</h6>
-            <ol id="topProdutos" class="mb-0">
-              <!-- preenchido via JS -->
-            </ol>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="card card-rounded p-3">
-            <h6 class="mb-3">Sugestões da IA</h6>
-            <div id="sugestoesIA" class="small-note">
-              <!-- preenchido via JS -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- RODAPÉ -->
-    <footer class="mt-5 small-note">
-      © 2025 <strong>Conecta+</strong> • Dashboard baseado no template FlexStart
-    </footer>
+        <!-- RODAPÉ -->
+        <footer class="mt-5 small-note">
+          © 2025 <strong>Conecta+</strong> • Dashboard baseado no template FlexStart
+        </footer>
 
   </main>
 
@@ -354,11 +471,11 @@
        --------------------------- */
     const produtos = [];
     const entregas = [
-      { pedido: 'P-1001', cliente: 'Ana Souza', produto: 'Kit Natural', metodo: 'Motoboy', data: '2025-10-20', estimativa: '2025-10-20', status: 'Entregue', rastreio: 'MB123' , dias:1},
-      { pedido: 'P-1002', cliente: 'Carlos Lima', produto: 'Sabonete Artesanal', metodo: 'Transportadora', data: '2025-10-22', estimativa: '2025-10-24', status: 'Em transporte', rastreio: 'TR456', dias:3},
-      { pedido: 'P-1003', cliente: 'Beatriz F.', produto: 'Xarope Natural', metodo: 'Correios', data: '2025-10-25', estimativa: '2025-11-01', status: 'Em transporte', rastreio: 'CR789', dias:7},
-      { pedido: 'P-1004', cliente: 'Lucas R.', produto: 'Shampoo Vegano', metodo: 'Retirada', data: '2025-10-26', estimativa: '2025-10-26', status: 'Entregue', rastreio: '-', dias:0},
-      { pedido: 'P-1005', cliente: 'Mariana S.', produto: 'Creme Facial', metodo: 'Motoboy', data: '2025-10-15', estimativa: '2025-10-16', status: 'Atrasado', rastreio: 'MB999', dias:5}
+      { pedido: 'P-1001', cliente: 'Ana Souza', produto: 'Kit Natural', metodo: 'Motoboy', data: '2025-10-20', estimativa: '2025-10-20', status: 'Entregue', rastreio: 'MB123', dias: 1 },
+      { pedido: 'P-1002', cliente: 'Carlos Lima', produto: 'Sabonete Artesanal', metodo: 'Transportadora', data: '2025-10-22', estimativa: '2025-10-24', status: 'Em transporte', rastreio: 'TR456', dias: 3 },
+      { pedido: 'P-1003', cliente: 'Beatriz F.', produto: 'Xarope Natural', metodo: 'Correios', data: '2025-10-25', estimativa: '2025-11-01', status: 'Em transporte', rastreio: 'CR789', dias: 7 },
+      { pedido: 'P-1004', cliente: 'Lucas R.', produto: 'Shampoo Vegano', metodo: 'Retirada', data: '2025-10-26', estimativa: '2025-10-26', status: 'Entregue', rastreio: '-', dias: 0 },
+      { pedido: 'P-1005', cliente: 'Mariana S.', produto: 'Creme Facial', metodo: 'Motoboy', data: '2025-10-15', estimativa: '2025-10-16', status: 'Atrasado', rastreio: 'MB999', dias: 5 }
     ];
 
     /* ---------------------------
@@ -410,7 +527,7 @@
         obs: document.getElementById('obsProduto').value,
         img: previewImg.src || null,
         plataformas: Array.from(document.querySelectorAll('#formProduto input[type="checkbox"]'))
-                        .filter(ch => ch.checked && ch.value).map(ch => ch.value)
+          .filter(ch => ch.checked && ch.value).map(ch => ch.value)
       };
       produtos.push(produto);
       atualizarTabelaProdutos();
@@ -426,13 +543,13 @@
         tr.innerHTML = `
           <td><input type="radio" name="selProduto" value="${p.id}"></td>
           <td>${p.nome}</td>
-          <td>${p.categoria||'-'}</td>
+          <td>${p.categoria || '-'}</td>
           <td>R$ ${p.preco}</td>
           <td>${p.qtd}</td>
           <td>
-            ${p.queima? '<span class="badge bg-danger">Queima</span>':''}
-            ${p.lancamento? '<span class="badge bg-info">Lançamento</span>':''}
-            ${p.destaque? '<span class="badge bg-warning text-dark">Destaque</span>':''}
+            ${p.queima ? '<span class="badge bg-danger">Queima</span>' : ''}
+            ${p.lancamento ? '<span class="badge bg-info">Lançamento</span>' : ''}
+            ${p.destaque ? '<span class="badge bg-warning text-dark">Destaque</span>' : ''}
           </td>
           <td>
             <button class="btn btn-sm btn-outline-secondary" onclick="editarProduto(${p.id})"><i class="bi bi-pencil"></i></button>
@@ -444,7 +561,7 @@
     }
 
     function editarProduto(id) {
-      const p = produtos.find(x=>x.id===id);
+      const p = produtos.find(x => x.id === id);
       if (!p) return;
       document.getElementById('nomeProduto').value = p.nome;
       document.getElementById('categoriaProduto').value = p.categoria;
@@ -462,8 +579,8 @@
 
     function removerProduto(id, confirmAlert = true) {
       if (confirmAlert && !confirm('Remover produto?')) return;
-      const idx = produtos.findIndex(x=>x.id===id);
-      if (idx>=0) produtos.splice(idx,1);
+      const idx = produtos.findIndex(x => x.id === id);
+      if (idx >= 0) produtos.splice(idx, 1);
       atualizarTabelaProdutos(); atualizarKPIs();
     }
 
@@ -474,9 +591,9 @@
     }
 
     function gerarDescricaoIA() {
-      const loader = document.getElementById('genLoader'); loader.style.display='block';
+      const loader = document.getElementById('genLoader'); loader.style.display = 'block';
       // Simulação de chamada para IA: gera um texto com base em flags
-      setTimeout(()=> {
+      setTimeout(() => {
         const nome = document.getElementById('nomeProduto').value || 'Produto';
         let texto = `${nome} — Produto de alta qualidade, formulado para oferecer resultado e confiança. Ideal para público que busca qualidade e custo-benefício.`;
         if (document.getElementById('flagQueima').checked) texto += ' Últimas unidades em queima de estoque — aproveite o desconto e garanta já!';
@@ -485,18 +602,18 @@
         // Sugestões de hashtags
         texto += '\n\nHashtags sugeridas: #promo #oferta #ConectaMais';
         document.getElementById('descricaoProduto').value = texto;
-        loader.style.display='none';
+        loader.style.display = 'none';
       }, 900);
     }
 
     function exportarCSV() {
       if (!produtos.length) return alert('Sem produtos para exportar.');
-      const header = ['Nome','Categoria','Preço','Qtd','Queima','Lançamento','Destaque','Descrição','Observações','Plataformas'];
+      const header = ['Nome', 'Categoria', 'Preço', 'Qtd', 'Queima', 'Lançamento', 'Destaque', 'Descrição', 'Observações', 'Plataformas'];
       const rows = produtos.map(p => [
-        p.nome, p.categoria, p.preco, p.qtd, p.queima, p.lancamento, p.destaque, `"${(p.desc||'').replace(/"/g,'""')}"`, `"${(p.obs||'').replace(/"/g,'""')}"`, `"${(p.plataformas||[]).join(';')}"`
+        p.nome, p.categoria, p.preco, p.qtd, p.queima, p.lancamento, p.destaque, `"${(p.desc || '').replace(/"/g, '""')}"`, `"${(p.obs || '').replace(/"/g, '""')}"`, `"${(p.plataformas || []).join(';')}"`
       ]);
-      const csv = [header, ...rows].map(r=>r.join(',')).join('\n');
-      const blob = new Blob([csv],{type:'text/csv'});
+      const csv = [header, ...rows].map(r => r.join(',')).join('\n');
+      const blob = new Blob([csv], { type: 'text/csv' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a'); a.href = url; a.download = 'produtos_conecta.csv'; a.click();
       URL.revokeObjectURL(url);
@@ -506,9 +623,9 @@
       const sel = document.querySelector('input[name="selProduto"]:checked');
       if (!sel) return alert('Selecione um produto para duplicar.');
       const id = Number(sel.value);
-      const p = produtos.find(x=>x.id===id);
+      const p = produtos.find(x => x.id === id);
       if (!p) return;
-      const clone = {...p, id: Date.now(), nome: p.nome + ' (Cópia)'};
+      const clone = { ...p, id: Date.now(), nome: p.nome + ' (Cópia)' };
       produtos.push(clone);
       atualizarTabelaProdutos();
       atualizarKPIs();
@@ -517,7 +634,7 @@
     /* ---------------------------
        Entregas: render + filtros + gráficos
        --------------------------- */
-    function renderEntregas(filterMetodo='') {
+    function renderEntregas(filterMetodo = '') {
       tabelaEntregas.innerHTML = '';
       const lista = entregas.filter(e => !filterMetodo || e.metodo === filterMetodo);
       lista.forEach(e => {
@@ -536,7 +653,7 @@
         tabelaEntregas.appendChild(tr);
       });
       totalEntregasMesEl.innerText = entregas.length;
-      entregasAtrasadasEl.innerText = entregas.filter(x=>x.status.toLowerCase().includes('atrasado')).length;
+      entregasAtrasadasEl.innerText = entregas.filter(x => x.status.toLowerCase().includes('atrasado')).length;
     }
 
     function badgeForStatus(status) {
@@ -548,7 +665,7 @@
       return `<span class="badge bg-secondary badge-status">${status}</span>`;
     }
 
-    document.getElementById('filtroMetodo').addEventListener('change', (e)=>{
+    document.getElementById('filtroMetodo').addEventListener('change', (e) => {
       renderEntregas(e.target.value);
       updateCharts(e.target.value);
     });
@@ -561,7 +678,7 @@
       const ctxPie = document.getElementById('pieMetodo').getContext('2d');
       pieChart = new Chart(ctxPie, {
         type: 'pie',
-        data: { labels: [], datasets: [{ data: [], backgroundColor: ['#0d6efd','#6f42c1','#198754','#ffc107'] }] },
+        data: { labels: [], datasets: [{ data: [], backgroundColor: ['#0d6efd', '#6f42c1', '#198754', '#ffc107'] }] },
         options: { plugins: { legend: { position: 'bottom' } } }
       });
 
@@ -575,7 +692,7 @@
       updateCharts();
     }
 
-    function updateCharts(filterMetodo='') {
+    function updateCharts(filterMetodo = '') {
       // Pie: % por método
       const methods = {};
       entregas.forEach(e => {
@@ -596,7 +713,7 @@
       const lineLabels = Object.keys(grouped);
       const lineData = lineLabels.map(l => {
         const arr = grouped[l];
-        return arr.length ? (arr.reduce((a,b)=>a+b,0)/arr.length).toFixed(1) : 0;
+        return arr.length ? (arr.reduce((a, b) => a + b, 0) / arr.length).toFixed(1) : 0;
       });
 
       lineChart.data.labels = lineLabels; lineChart.data.datasets[0].data = lineData; lineChart.update();
@@ -607,18 +724,18 @@
        --------------------------- */
     function atualizarRelatorios() {
       // Top produtos simulados (com base em produtos cadastrados)
-      const top = produtos.slice(0,3);
+      const top = produtos.slice(0, 3);
       const ol = document.getElementById('topProdutos'); ol.innerHTML = '';
       if (!top.length) ol.innerHTML = '<li>Nenhum produto cadastrado</li>';
       top.forEach(p => {
-        const li = document.createElement('li'); li.innerText = `${p.nome} — ${p.preco ? 'R$ '+p.preco : '-'}`;
+        const li = document.createElement('li'); li.innerText = `${p.nome} — ${p.preco ? 'R$ ' + p.preco : '-'}`;
         ol.appendChild(li);
       });
 
       // Sugestões da IA (simuladas)
       const sugest = document.getElementById('sugestoesIA');
-      const plataformas = ['TikTok','Instagram','Facebook','Google','YouTube'];
-      const rand = plataformas[Math.floor(Math.random()*plataformas.length)];
+      const plataformas = ['TikTok', 'Instagram', 'Facebook', 'Google', 'YouTube'];
+      const rand = plataformas[Math.floor(Math.random() * plataformas.length)];
       sugest.innerHTML = `<p>Recomendação: Aumente foco em <strong>${rand}</strong> esta semana. Teste 3 criativos diferentes e acompanhe CTR e conversões.</p>`;
       topPlataformaEl.innerText = rand;
     }
@@ -653,6 +770,54 @@
 
     // Preencher a tabela de entregas inicial
     renderEntregas();
+
+    // Atualiza o valor e alcance dinamicamente
+    const slider = document.getElementById("valorSlider");
+    const valorSel = document.getElementById("valorSelecionado");
+    const alcance = document.getElementById("alcanceEstimado");
+    const valorTotal = document.getElementById("valorTotal");
+   
+    // Exemplo: quando produtos são adicionados, atualize o total assim:
+    let totalProdutos = 0; // será atualizado dinamicamente no seu sistema
+
+    function atualizarValorTotal(novoValor) {
+      totalProdutos = novoValor;
+      valorTotal.textContent = `R$ ${totalProdutos.toFixed(2)}`;
+    }
+
+    // Slider para definir investimento e estimar alcance
+    slider.addEventListener("input", () => {
+      const valor = Number(slider.value);
+      valorSel.textContent = valor.toFixed(2);
+      alcance.textContent = Math.round(valor * 3.5); // Exemplo: 1 real ≈ 3,5 pessoas alcançadas
+    });
+
+    // Botão de faturamento
+    document.getElementById("btnFaturar").addEventListener("click", () => {
+      msgFaturamento.style.display = "block";
+      setTimeout(() => msgFaturamento.style.display = "none", 3000);
+    });
+
+    const valorFaturaEl = document.getElementById("valorFatura");
+    const sliderValor = document.getElementById("valorSlider");
+    const msgFaturamento = document.getElementById("msgFaturamento");
+    let valorFatura = 0;
+
+    // Atualiza valor da fatura quando o botão de faturar é clicado
+    document.getElementById("btnFaturar").addEventListener("click", () => {
+      const valorSelecionado = Number(sliderValor.value);
+
+      if (valorSelecionado > 0) {
+        valorFatura += valorSelecionado; // soma ao total da fatura atual
+        valorFaturaEl.textContent = `R$ ${valorFatura.toFixed(2)}`;
+        msgFaturamento.style.display = "block";
+        setTimeout(() => (msgFaturamento.style.display = "none"), 3000);
+      } else {
+        alert("Selecione um valor antes de gerar o faturamento!");
+      }
+    });
+
+
 
   </script>
 </body>
